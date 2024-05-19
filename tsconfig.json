@@ -1,0 +1,15 @@
+{
+    "extends": "@tsconfig/svelte/tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "types": ["svelte", "jest", "testing-library__jest-dom"],
+        "paths": {
+            "src/*": ["src/*"],
+            "shared/*": ["src/shared/*"],
+            "entities/*": ["src/entities/*"],
+            "features/*": ["src/widgets/*"]
+        }
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+}

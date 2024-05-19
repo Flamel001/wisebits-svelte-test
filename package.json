@@ -1,0 +1,65 @@
+{
+  "name": "svelte-coffee-list",
+  "version": "0.1.0",
+  "author": "Nikita Kostenko",
+  "description": "Smooth coffee list on svelte",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 8"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build:dev": "npm run clean && npx webpack --env development",
+    "build:prod": "npm run clean && npx webpack",
+    "clean": "npx rimraf ./public/build/*",
+    "start": "npx webpack-dev-server --env development=true",
+    "test": "npx jest src",
+    "test:watch": "npm run test -- --watch"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/svelte": "^3.1.1",
+    "@tsconfig/svelte": "^3.0.0",
+    "@types/jest": "^27.4.1",
+    "@types/testing-library__jest-dom": "^5.14.3",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^3.4.1",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.3",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.1",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "rimraf": "^3.0.2",
+    "svelte": "^3.47.0",
+    "svelte-jester": "^2.3.2",
+    "svelte-loader": "^3.1.2",
+    "svelte-preprocess": "^4.10.5",
+    "ts-jest": "^27.1.4",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "svelte"
+    ],
+    "transform": {
+      "^.+\\.svelte$": [
+        "svelte-jester",
+        {
+          "preprocess": true
+        }
+      ],
+      "^.+\\.ts$": "ts-jest"
+    }
+  },
+  "setupFilesAfterEnv": [
+    "@testing-library/jest-dom/extend-expect"
+  ]
+}
