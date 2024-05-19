@@ -1,4 +1,4 @@
-# Svelte 3 + Typescript + Webpack 5 Template 
+# Random coffee!
 
 This is a project created using [template](https://github.com/sonyseng/svelte-webpack-template) for [Svelte 3](https://svelte.dev) apps using [Webpack 5](https://webpack.js.org/) and 
 [Typescript](https://www.typescriptlang.org/). 
