@@ -1,5 +1,5 @@
 <script lang="ts">
-    import CoffeeList from 'src/widgets/coffeList/CoffeList.svelte';
+    import CoffeeList from 'src/widgets/coffeList/CoffeeList.svelte';
     import 'src/global.css';
 </script>
 

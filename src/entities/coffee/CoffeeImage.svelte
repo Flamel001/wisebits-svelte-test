@@ -1,26 +1,45 @@
 <script>
-    // general component + link as props?
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
     const COFFEE_IMAGE_ENDPOINT = 'https://loremflickr.com/500/500/coffee_bean';
     let src,
-        isLoading = true;
+        isLoading = true,
+        error = '';
     const getCoffee = async () => {
-        src = await fetch(COFFEE_IMAGE_ENDPOINT).then(({ url }) => url);
+        isLoading = true;
+        error = '';
+        await fetch(COFFEE_IMAGE_ENDPOINT)
+            .then(({ url }) => (src = url))
+            .catch(() => {
+                error = "Sorry, we can't show coffee now";
+                dispatch('load');
+            });
     };
     getCoffee();
 </script>
 
 <article class="image" class:skeleton={isLoading}>
-    <img
-        class="image"
-        class:hidden={isLoading}
-        class:visible={!isLoading}
-        on:load={() => (isLoading = false)}
-        {src}
-        alt="coffee"
-    />
+    {#if error}
+        <div class="error">
+            {error}
+            <div class="error-retry" on:click={getCoffee}>Click here to retry</div>
+        </div>
+    {:else}
+        <img
+            class="image"
+            class:hidden={isLoading}
+            class:visible={!isLoading}
+            on:load={() => {
+                isLoading = false;
+                dispatch('load');
+            }}
+            {src}
+            alt="coffee"
+        />
+    {/if}
 </article>
 
-<style>
+<style lang="less">
     .image {
         width: 300px;
         height: 250px;
@@ -31,6 +50,18 @@
     }
     .visible {
         opacity: 1;
+    }
+
+    .error {
+        background-color: lightgray;
+        height: 250px;
+        display: grid;
+        place-items: center;
+        align-content: center;
+        &-retry {
+            cursor: pointer;
+            border-bottom: 1px solid blue;
+        }
     }
     .skeleton {
         background:

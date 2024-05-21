@@ -1,9 +1,8 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
-
-    import Tag from 'src/shared/ui/Tag.svelte';
-    import type { Coffee } from './types';
+    import Tag from 'shared/ui/Tag.svelte';
     import CoffeeImage from './CoffeeImage.svelte';
+    import type { Coffee } from './types';
     export let coffee: Coffee;
     const { blend_name, intensifier, notes, origin, variety } = coffee;
     const tags = notes.split(', ');
@@ -11,7 +10,7 @@
 
 <article transition:fade class="coffeeCard">
     <p class="coffeeCard-intensifier">{intensifier}</p>
-    <CoffeeImage />
+    <CoffeeImage on:load />
     <section class="coffeeCard-info">
         <p class="coffeeCard-origin">{origin}</p>
         <h1 class="coffeeCard-name">{blend_name}</h1>
@@ -29,7 +28,7 @@
     .coffeeCard {
         background-color: white;
         position: relative;
-        width: 300px;
+        width: 280px;
         height: 380px;
         border-radius: 10px;
         overflow: hidden;
@@ -39,6 +38,10 @@
             display: grid;
             gap: @gap-sm;
             padding: 0 0 @padding-sm @padding-sm;
+        }
+
+        &-name {
+            font-size: 20px;
         }
 
         &-intensifier {
@@ -59,8 +62,6 @@
             gap: @gap-sm;
             overflow-x: scroll;
 
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
             &::-webkit-scrollbar {
                 display: none; /* Chrome, Safari, Opera */
             }
