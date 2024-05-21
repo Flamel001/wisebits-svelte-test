@@ -9,8 +9,8 @@
   },
   "sideEffects": false,
   "scripts": {
-    "build:dev": "npm run clean && npx webpack --env development",
-    "build:prod": "npm run clean && npx webpack",
+    "build:dev": "npx webpack --env development",
+    "build:prod": "npx webpack",
     "start": "npx webpack-dev-server --env development=true",
     "test": "npx cypress open",
     "format": "prettier --write **/*.{js,svelte,html,ts}"
