@@ -5,10 +5,10 @@
     let src,
         isLoading = true,
         error = '';
-    const getCoffee = async () => {
+    const getCoffee = () => {
         isLoading = true;
         error = '';
-        await fetch(COFFEE_IMAGE_ENDPOINT)
+        fetch(COFFEE_IMAGE_ENDPOINT)
             .then(({ url }) => (src = url))
             .catch(() => {
                 error = "Sorry, we can't show coffee now";
@@ -18,7 +18,7 @@
     getCoffee();
 </script>
 
-<article class="image" class:skeleton={isLoading}>
+<article class="image" class:skeleton={isLoading && !error}>
     {#if error}
         <div class="error">
             {error}
