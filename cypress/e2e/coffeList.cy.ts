@@ -3,6 +3,7 @@ describe('Coffee list', () => {
         cy.visit('/');
     });
 
+    // A bit flaky because of API calls, fixtures could be used instead
     it('Works as expected', () => {
         cy.clock();
 
@@ -17,7 +18,7 @@ describe('Coffee list', () => {
         // API returns 429 if is requested too often, so we wait here
         cy.wait(1000);
 
-        // New coffee added. Until it loads - buttons is disabled
+        // New coffee addition. Until it loads - button is disabled
         cy.getByTestId('addCoffee').click();
         cy.getByTestId('addCoffee').should('be.disabled');
         cy.get('.coffeeCard').should('have.length', 2);

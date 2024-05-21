@@ -26,7 +26,8 @@
         color: white;
         transition-duration: 0.25s;
 
-        &:hover:enabled {
+        &:hover:enabled,
+        &:active:enabled {
             cursor: pointer;
             box-shadow: 0 0 2px 2px #6f4e37;
         }

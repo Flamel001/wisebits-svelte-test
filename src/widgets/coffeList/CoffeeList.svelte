@@ -1,7 +1,6 @@
 <script lang="ts">
     import CoffeeCard from 'entities/coffee/CoffeeCard.svelte';
     import type { Coffee } from 'entities/coffee/types';
-    import Loader from 'shared/ui/Loader.svelte';
     import AddButton from 'shared/ui/AddButton.svelte';
     import { getRandomCoffee } from './api';
     import { onDestroy } from 'svelte';
@@ -11,6 +10,7 @@
     let error = '';
 
     let interval: ReturnType<typeof setInterval>;
+    let retryTimeout: ReturnType<typeof setTimeout>;
     const AUTO_ADD_TIMER = 30000;
     const autoAddCoffee = () => {
         clearInterval(interval);
@@ -28,7 +28,12 @@
                 // По ТЗ тестового "Первая карточка должна выводится", поэтому тут
                 // минимальная имплементация ретраев для случая когда это не получилось с первого раза
                 if (coffeeList.length === 0 && retryCount < 3) {
-                    addCoffee(++retryCount);
+                    retryTimeout = setTimeout(
+                        () => {
+                            addCoffee(++retryCount);
+                        },
+                        retryCount * 2 * 1000
+                    );
                 } else {
                     error = "Sorry, we can't serve coffee now. Try again later";
                     isLoading = false;
@@ -40,7 +45,7 @@
 
     let coffeListContentElem: HTMLElement;
 
-    onDestroy(() => clearInterval(interval));
+    onDestroy(() => (clearInterval(interval), clearTimeout(retryTimeout)));
 </script>
 
 <article data-testid="coffeeList" class="coffeeList">
