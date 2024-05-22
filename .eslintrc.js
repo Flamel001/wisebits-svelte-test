@@ -22,6 +22,9 @@ module.exports = {
             processor: 'svelte3/svelte3'
         }
     ],
+    rules: {
+        '@typescript-eslint/no-floating-promises': 0
+    },
     settings: {
         'svelte3/typescript': require('typescript'),
         // ignore style tags in Svelte because of Tailwind CSS

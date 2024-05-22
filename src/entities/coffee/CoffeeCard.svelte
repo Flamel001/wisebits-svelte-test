@@ -58,6 +58,8 @@
         }
 
         &-tags {
+            margin: 0 -10px;
+            padding: 0 20px 0 10px;
             display: flex;
             gap: @gap-sm;
             overflow-x: scroll;

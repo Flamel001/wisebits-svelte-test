@@ -41,7 +41,7 @@
 
 <style lang="less">
     .image {
-        width: 300px;
+        width: 280px;
         height: 250px;
         transition: opacity 1s;
     }
